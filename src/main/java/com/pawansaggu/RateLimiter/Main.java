@@ -2,7 +2,8 @@ package RateLimiter;
 
 // import RateLimiter.TokenBucket.TokenBucket;
 // import RateLimiter.LeakyBucket.LeakyBucket;
-import RateLimiter.FixedInternal.FixedInterval;
+// import RateLimiter.FixedInternal.FixedInterval;
+import RateLimiter.SlidingWindow.SlidingWindow;
 
 class Request implements Runnable {
     private RateLimiter limiter;
@@ -33,7 +34,8 @@ public class Main {
     public static void main(String args[]) {
         // RateLimiter limiter = new TokenBucket(5, 1);
         // RateLimiter limiter = new LeakyBucket(5, 2);
-        RateLimiter limiter = new FixedInterval(5, 2);
+        // RateLimiter limiter = new FixedInterval(5, 2);
+        RateLimiter limiter = new SlidingWindow(5, 2);
         Thread thread1 = new Thread(new Request(limiter));
         Thread thread2 = new Thread(new Request(limiter));
 
